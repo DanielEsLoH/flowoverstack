@@ -1,0 +1,15 @@
+<section class="w-10/12 mx-auto" >
+  <h1 class="text-3xl font-bold mt-10">Preguntas</h1>
+  <div class="flex justify-end items-center">
+    <%= link_to '#', class: "align-self-end inline-block align-self-end mb-6 mt-3" do %>
+      <div class="p-2 rounded-lg bg-blue-500 text-white text-center">
+        Hacer una pregunta
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <% if @questions.any? %>
+      <%= render 'questions', questions: @questions %>
+    <% end %>
+  </div>
+</section>
