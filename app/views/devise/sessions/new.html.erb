@@ -1,0 +1,22 @@
+<section class="h-screen w-full flex flex-col justify-center items-center">
+  <div class="p-20 bg-slate-800 rounded-lg">
+    <h2 class="text-white text-center text-3xl font-semibold p-4 mb-5">Iniciar sesión</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field flex flex-col">
+        <%= f.label :email, "Correo electrónico", class: "text-white text-center text-lg p-2 font-semibold" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded-lg text-sm font-semibold" %>
+      </div>
+
+      <div class="field flex flex-col">
+        <%= f.label :password, "Contraseña", class: "text-white text-center text-lg p-2 font-semibold" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "rounded-lg text-sm font-semibold" %>
+      </div>
+
+      <div class="actions py-6 flex justify-center">
+        <div class="bg-sky-500 text-white font-semibold p-4 rounded-lg cursor-pointer">
+          <%= f.submit "Iniciar sesión", class: 'cursor-pointer' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+<section class="h-screen w-full flex flex-col justify-center items-center">
+  <div class="p-20 bg-slate-800 rounded-lg">
+    <h2 class="text-white text-center text-3xl font-semibold p-4 mb-5">Registro</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field flex flex-col">
+        <%= f.label :email, "Correo electrónico", class: 'text-white text-center text-lg p-2 font-semibold' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded-lg text-sm font-semibold' %>
+      </div>
+
+      <div class="field flex flex-col">
+        <%= f.label :password, "Contraseña", class: 'text-white text-center text-lg p-2 font-semibold' %>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'rounded-lg text-sm font-semibold' %>
+        <% if @minimum_password_length %>
+          <em class="text-sm text-white text-center font-semibold">(<%= @minimum_password_length %> caracteres mínimos)</em>
+        <% end %>
+      </div>
+
+      <div class="field flex flex-col">
+        <%= f.label :password_confirmation, "Confirmar contraseña", class: 'text-white text-center text-lg p-2 font-semibold' %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'rounded-lg text-sm font-semibold' %>
+      </div>
+
+      <div class="actions py-6 flex justify-center">
+        <div class="bg-sky-500 text-white font-semibold p-4 rounded-lg cursor-pointer">
+          <%= f.submit "Regístrate", class: 'cursor-pointer' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
