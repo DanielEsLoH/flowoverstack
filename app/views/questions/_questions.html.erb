@@ -1,3 +1,6 @@
-<% questions.each do |question| %>
-  <%= render "question", question: question %>
-<% end %>
+<%= turbo_frame_tag "modal" %>
+<section id="questions_all">
+  <% questions.each do |question| %>
+    <%= render "question", question: question %>
+  <% end %>
+</section>

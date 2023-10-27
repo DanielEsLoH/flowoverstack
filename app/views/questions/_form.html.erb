@@ -1,0 +1,21 @@
+<%= form_with(model: @question, url: url, data: { controller: "reset", action: "submit->reset#resetForm"}) do |f| %>
+  <div class="flex flex-col py-4">
+    <%= f.label :title, "Titulo", class: 'text-white font-semibold' %>
+    <%= f.text_field :title, class: 'p-2 rounded-lg text-sm font-semibold w-full' %>
+  </div>
+
+  <div class="flex flex-col py-4">
+    <%= f.label :description, "Descripción", class: 'text-white font-semibold' %>
+    <%= f.text_area :description, class: 'height-textarea p-2 h-full rounded-lg text-sm font-semibold w-full' %>
+  </div>
+
+  <div class="flex justify-between">
+    <span class="bg-red-500 p-2 rounded-lg cursor-pointer">
+      <%= link_to 'Atras', :back, class: 'text-white font-semibold' %>
+    </span>
+    <span class="bg-green-500 p-2 rounded-lg cursor-pointer">
+      <%= f.submit "Crear pregunta", class: 'text-white font-semibold cursor-pointer' %>
+    </span>
+  </div>
+  
+<% end %>
