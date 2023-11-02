@@ -1,8 +1,8 @@
 <div class="my-2 ">
   <div class="border-2 rounded-lg">
     <h2 class="text-center font-semibold text-2xl p-3">Comentarios</h2>
-    <% @question.comments.each do |comment| %>
-      <p class="border-t-2 p-2 border-slate-200 text-sm">
+    <% @question.comments.reverse.each do |comment| %>
+      <p class="border-t-2 p-2 border-slate-200 text-sm text-slate-500">
         <%= comment.content %>
       </p>  
     <% end %>

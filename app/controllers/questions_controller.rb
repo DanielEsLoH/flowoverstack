@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
   end
    
   def show
-    @comments = @question.comments.order(created_at: :desc)
+    @comments = @question.comments.order(created_at: :desc)  
   end
 
   def new
