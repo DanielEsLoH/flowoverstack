@@ -1,0 +1,23 @@
+<div class="my-2 ">
+  <div class="border-2 rounded-lg">
+    <h2 class="text-center font-semibold text-2xl p-3">Comentarios</h2>
+    <% @question.comments.each do |comment| %>
+      <p class="border-t-2 p-2 border-slate-200 text-sm">
+        <%= comment.content %>
+      </p>  
+    <% end %>
+  </div>
+  <div>
+    <h2 class="my-5 text-center font-semibold text-2xl">Añadir un comentario</h2>
+    <%= form_with(model: [@question, @question.comments.build], local: true) do |f| %>
+      <div class="field flex flex-col">
+        <%= f.text_area :content, class: 'text-sm p-2 rounded-lg border-black border-2' %>
+      </div>
+      <div class="actions flex justify-end my-2">
+        <div class="p-2 bg-green-500 rounded-lg text-sm text-white font-semibold cursor-pointer">
+          <%= f.submit 'Crear comentario', class: 'cursor-pointer' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

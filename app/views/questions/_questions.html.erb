@@ -1,6 +1,25 @@
 <%= turbo_frame_tag "modal" %>
 <section id="questions_all">
   <% questions.each do |question| %>
-    <%= render "question", question: question %>
+    <div class="border-t-2 border-slate-300 flex items-center">
+      <div class="flex-col ml-6 text-center">
+        <p class="text-2xl font-semibold">1</p>
+        <p class="text-sm font-semibold">Votos</p>
+      </div>
+      <div class="flex-col ml-6 text-center">
+        <p class="text-2xl font-semibold">0</p>
+        <p class="text-sm font-semibold">Respuestas</p>
+      </div>
+      <div class="ml-9">
+        <h2 class="text-orange-500 text-xl font-bold">
+          <%= link_to question do %>
+            <%= question.title %>
+          <% end %>
+        </h2>
+        <p class="text-sm text-slate-400">
+          Preguntó <%= question.user.email %>
+        </p>
+      </div>
+    </div>
   <% end %>
 </section>
