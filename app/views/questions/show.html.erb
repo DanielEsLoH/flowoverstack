@@ -1,7 +1,6 @@
 <section class="mt-6 mx-40">
   <%= render 'question' %>
-  <%= render 'shared/comments' %>
-  <div>
-    Aquí viene la sesión de respuestas.
-  </div>
+  <%= render partial: 'comments/comments', locals: { comments: @comments } %>
+  <%= render partial: 'comments/comment_form', locals: { commentable: @question } %> 
+  <%= render 'answers' %>
 </section>

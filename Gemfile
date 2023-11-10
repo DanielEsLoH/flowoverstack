@@ -76,3 +76,5 @@ gem "tailwindcss-rails", "~> 2.0"
 gem "devise", github: 'heartcombo/devise', branch: 'main'
 
 gem "font-awesome-sass", "~> 6.4"
+
+gem "hirb", "~> 0.7.3"

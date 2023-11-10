@@ -3,4 +3,5 @@ class Question < ApplicationRecord
     validates :description, presence: true
     belongs_to :user
     has_many :comments, as: :commentable, dependent: :destroy
+    has_many :answers, dependent: :destroy
 end

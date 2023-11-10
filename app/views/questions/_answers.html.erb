@@ -1,0 +1,17 @@
+<div class="py-6">
+  <div class="border-b-2">
+    <h2 class="text-2xl text-center font-bold">Respuesta(s)</h2>
+  </div>
+  <div>
+    <% @answers.each do |answer| %>
+      <p>
+        <%= answer.content %>
+      </p>
+      <%= render partial: 'comments/comments', locals: { comments: @comments } %>
+      <%= render partial: 'comments/comment_form', locals: { commentable: @answer } %> 
+    <% end %>
+  </div>
+  <div>
+    Aquí va el formulario
+  </div>
+</div>
