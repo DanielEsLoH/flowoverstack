@@ -1,0 +1,10 @@
+<div class="my-2 py-2 border-b-2 border-slate-500">
+  <div>
+    <h2 class="text-center font-bold text-xl pb-4">Comentarios:</h2>
+    <% comments.reverse.each do |comment| %>
+      <p class="border-t-2 py-2 border-slate-200 text-sm">
+        <%= comment.content %>
+      </p>  
+    <% end %>
+  </div>
+</div>
