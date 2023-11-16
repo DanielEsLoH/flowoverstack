@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   root "questions#index"
   resources :questions do
     resources :comments, only: :create
+    resources :votes, only: [:create, :destroy]
     resources :answers, only: [:create] do
       resources :comments, only: :create
+      resources :votes, only: [:create, :destroy]
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

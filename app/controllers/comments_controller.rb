@@ -6,9 +6,9 @@ class CommentsController < ApplicationController
 
 
     if @comment.save
-      redirect_to question_path(@question), notice: 'Comment was successfully created.'
+      redirect_to question_path(@commentable), notice: 'Comment was successfully created.'
     else
-      redirect_to question_path(@question), alert: 'Error: Comment could not be created.'
+      redirect_to question_path(@commentable), alert: 'Error: Comment could not be created.'
     end
   end
 
