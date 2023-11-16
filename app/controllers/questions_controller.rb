@@ -7,7 +7,9 @@ class QuestionsController < ApplicationController
    
   def show
     @comments = @question.comments.order(created_at: :desc)
-    @answers = @question.answers
+    @answers = @question.answers.includes(:comments)
+
+    @answer = @question.answers.new
   end
 
   def new
@@ -31,5 +33,4 @@ class QuestionsController < ApplicationController
     def question_params
       params.require(:question).permit(:title, :description)
     end
-  
 end

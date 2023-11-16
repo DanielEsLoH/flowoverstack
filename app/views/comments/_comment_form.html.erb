@@ -1,4 +1,3 @@
-<h2>Añadir comentarios</h2>
 <%= form_with(model: [ commentable, Comment.new(commentable: commentable) ], local: true) do |f| %>
   <div class="field flex flex-col border-spacing-4">
     <%= f.text_field :content, placeholder: 'Agrega un comentario', class: 'text-sm p-2 rounded-lg border-slate-300 border-2' %>
