@@ -1,7 +1,6 @@
 <div class="p-4">
   <h1 class="text-3xl justify-center font-extrabold"><%= @question.title %></h1>
 </div>
-
 <div class="flex p-4">
   <div class="flex flex-col mr-4">
     <% if current_user && !current_user.votes.exists?(votable: @question) %>
@@ -14,6 +13,9 @@
         <i class="fa-solid fa-circle-up text-3xl"></i>
         <p class="text-center"><%= @question.votes.count %></p>
       <% end %>
+    <% else %>
+    <i class="fa-regular fa-circle-up text-3xl"></i>
+        <p class="text-center"> <%= @question.votes.count %> </p>
     <% end %>
   </div>
   <div class="w-full">
@@ -26,27 +28,3 @@
     </div>
   </div>
 </div>
-
-
-<!-- 
-  <div class="p-4 w-48">
-    <div class="flex justify-center mb-2 w-full">
-      <h1 class="text-3xl font-extrabold"><%= @question.title %></h1>
-    </div>
-    <div class="flex">
-      <div class="flex flex-col mr-4 items-center w-1/5">
-        <i class="fa-solid fa-circle-up text-3xl"></i>
-        <span>10</span>
-      </div>
-      <div class="flex flex-col items-center w-4/5">
-        <div>
-          <p class="text-center justify-center"><%= @question.description %></p>
-        </div>
-        <div class="inline-block w-full">
-          <%= render partial: 'comments/comments', locals: { comments: @comments } %>
-          <%= render partial: 'comments/comment_form', locals: { commentable: @question } %>
-        </div>
-      </div>
-    </div>
-  </div> 
--->
