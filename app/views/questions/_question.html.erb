@@ -19,8 +19,8 @@
     <% end %>
   </div>
   <div class="w-full">
-    <div class="">
-      <p class=""><%= @question.description %></p>
+    <div>
+      <p><%= @question.description %></p>
     </div>
     <div class="flex-col">
       <%= render partial: 'comments/comments', locals: { comments: @comments } %>
