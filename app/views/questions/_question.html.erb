@@ -6,7 +6,7 @@
     <% if current_user && !current_user.votes.exists?(votable: @question) %>
       <%= button_to question_votes_path(@question) do %>
         <i class="fa-regular fa-circle-up text-3xl"></i>
-        <p class="text-center"> <%= @question.votes.count %> </p>
+        <p class="text-center"> <%= @question.votes.count %></p>
       <% end %>
     <% elsif current_user && current_user.votes.find_by(votable: @question) %>
       <%= button_to question_vote_path(@question), method: :delete do %>
@@ -14,8 +14,8 @@
         <p class="text-center"><%= @question.votes.count %></p>
       <% end %>
     <% else %>
-    <i class="fa-regular fa-circle-up text-3xl"></i>
-        <p class="text-center"> <%= @question.votes.count %> </p>
+      <i class="fa-regular fa-circle-up text-3xl"></i>
+      <p class="text-center"> <%= @question.votes.count %></p>
     <% end %>
   </div>
   <div class="w-full">

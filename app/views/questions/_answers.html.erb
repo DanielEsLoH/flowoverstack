@@ -5,8 +5,20 @@
       <% @answers.each do |answer| %>
         <div class="flex p-4">
           <div class="flex flex-col mr-4">
-            <i class="fa-solid fa-circle-up text-3xl"></i>
-            <span class="text-center">10</span>
+            <% if current_user && !current_user.votes.exists?(votable: answer) %>
+              <%= button_to question_answer_votes_path(@question, answer) do %>
+                <i class="fa-regular fa-circle-up text-3xl"></i>
+                <p class="text-center"> <%= answer.votes.count %></p>
+              <% end %>
+            <% elsif current_user && current_user.votes.find_by(votable: answer) %>
+              <%= button_to question_answer_vote_path(@question, answer), method: :delete do %>
+                <i class="fa-solid fa-circle-up text-3xl"></i>
+                <p class="text-center"><%= answer.votes.count %></p>
+              <% end %>
+            <% else %>
+              <i class="fa-regular fa-circle-up text-3xl"></i>
+              <p class="text-center"><%= answer.votes.count %></p>
+            <% end %>
           </div>
 
           <div class="w-full">
