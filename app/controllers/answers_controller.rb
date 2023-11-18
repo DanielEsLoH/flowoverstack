@@ -5,10 +5,10 @@ class AnswersController < ApplicationController
 
     if @answer.save
       flash[:success] = "Respuesta creada con exito"
-      redirect_to question_path(@question)
+      redirect_to question_path(@answer)
     else
       flash[:error] = "Error al crear la respuesta"
-      redirect_to question_path(@question)
+      redirect_to question_path(@answer)
     end
   end
 
