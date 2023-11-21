@@ -20,7 +20,7 @@
   </div>
   <div class="w-full">
     <div>
-      <p><%= @question.description %></p>
+      <p><%= @question.description_markdown.html_safe %></p>
     </div>
     <div class="flex-col">
       <%= render partial: 'comments/comments', locals: { comments: @comments } %>

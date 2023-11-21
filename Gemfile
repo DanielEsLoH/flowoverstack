@@ -78,3 +78,5 @@ gem "devise", github: 'heartcombo/devise', branch: 'main'
 gem "font-awesome-sass", "~> 6.4"
 
 gem "hirb", "~> 0.7.3"
+
+gem "redcarpet", "~> 3.6"
