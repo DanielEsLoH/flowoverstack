@@ -1,13 +1,16 @@
 class VotesController < ApplicationController
   before_action :set_question, only: [:create, :destroy]
   before_action :set_votable, only: [:create, :destroy]
+  before_action :user_vote, only: [:create]
   def create
     @vote = @votable.votes.create(user_id: current_user.id)
-
-    if @vote.save
-      redirect_to question_path(@votable), notice: 'Vote add'
-    else
-      redirect_to question_path(@votable), alert: "Error al registrar el voto"
+    respond_to do |format|
+      if @vote.save
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes", partial: 'votes/votes', locals: {})}
+        # redirect_to question_path(@votable), alert: "Error al registrar el voto"
+      else
+        redirect_to question_path(@user_vote), notice: 'Vote add'
+      end
     end
   end
 
@@ -17,6 +20,10 @@ class VotesController < ApplicationController
   end
 
   private
+    def user_vote
+      @user_vote = Vote.find_by(user_id: current_user.id)
+    end
+
     def set_question
       @question = Question.find(params[:question_id])
     end
@@ -28,7 +35,7 @@ class VotesController < ApplicationController
     def votes_params
       params.require(:vote)
     end
-    
+
     def find_votable
       @votable = if params[:answer_id].present?
         Answer.find params[:answer_id]

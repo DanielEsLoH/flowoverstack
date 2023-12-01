@@ -2,28 +2,13 @@
   <h1 class="text-3xl justify-center font-extrabold"><%= @question.title %></h1>
 </div>
 <div class="flex p-4">
-  <div class="flex flex-col mr-4" id="votes">
-    <% if current_user && !current_user.votes.exists?(votable: @question) %>
-      <%= button_to question_votes_path(@question) do %>
-        <i class="fa-regular fa-circle-up text-3xl"></i>
-        <p class="text-center"> <%= @question.votes.count %></p>
-      <% end %>
-    <% elsif current_user && current_user.votes.find_by(votable: @question) %>
-      <%= button_to question_vote_path(@question), method: :delete do %>
-        <i class="fa-solid fa-circle-up text-3xl"></i>
-        <p class="text-center"><%= @question.votes.count %></p>
-      <% end %>
-    <% else %>
-      <i class="fa-regular fa-circle-up text-3xl"></i>
-      <p class="text-center"> <%= @question.votes.count %></p>
-    <% end %>
-  </div>
+  <%= render partial: 'votes/votes'%>
   <div class="w-full">
     <div>
       <p><%= @question.description_markdown.html_safe %></p>
     </div>
     <div class="flex-col">
-      <%= render partial: 'comments/comments', locals: { comments: @comments } %>
+      <%= render partial: 'comments/comments_question', locals: { comments: @comments, votable: @question, question: @question} %>
       <%= render partial: 'comments/comment_form', locals: { commentable: @question } %>
     </div>
   </div>
