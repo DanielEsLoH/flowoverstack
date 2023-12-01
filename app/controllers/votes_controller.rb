@@ -6,8 +6,7 @@ class VotesController < ApplicationController
     @vote = @votable.votes.create(user_id: current_user.id)
     respond_to do |format|
       if @vote.save
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes", partial: 'votes/votes', locals: {})}
-        # redirect_to question_path(@votable), alert: "Error al registrar el voto"
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_question", partial: 'votes/votes', locals: {question: @question })}
       else
         redirect_to question_path(@user_vote), notice: 'Vote add'
       end
@@ -16,7 +15,9 @@ class VotesController < ApplicationController
 
   def destroy
     @votable.votes.where(user_id: current_user.id).destroy_all
-    redirect_to question_path(@votable), notice: 'voto deshecho exitosamente'
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_question", partial: 'votes/votes', locals: {question: @question })}
+    end
   end
 
   private
