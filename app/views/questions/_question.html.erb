@@ -2,7 +2,7 @@
   <h1 class="text-3xl justify-center font-extrabold"><%= @question.title %></h1>
 </div>
 <div class="flex p-4">
-  <%= render partial: 'votes/votes', locals: {question: @question}%>
+  <%= render partial: 'votes/votes_question', locals: {question: @question}%>
   <div class="w-full">
     <div>
       <p><%= @question.description_markdown.html_safe %></p>

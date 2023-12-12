@@ -5,7 +5,7 @@
       <p class="text-center"> <%= question.votes.count %></p>
     <% end %>
   <% elsif current_user && current_user.votes.find_by(votable: question) %>
-    <%= button_to question_vote_url(question, question.votes), method: :delete do %>
+    <%= button_to question_vote_path(question, question.votes), method: :delete do %>
       <i class="fa-solid fa-circle-up text-3xl"></i>
       <p class="text-center"><%= question.votes.count %></p>
     <% end %>

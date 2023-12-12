@@ -1,32 +1,42 @@
 class VotesController < ApplicationController
   before_action :set_question, only: [:create, :destroy]
   before_action :set_votable, only: [:create, :destroy]
-  before_action :user_vote, only: [:create]
   def create
     @vote = @votable.votes.create(user_id: current_user.id)
+    votable_type = @votable.class.name
     respond_to do |format|
-      if @vote.save
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_question", partial: 'votes/votes', locals: {question: @question })}
-      else
-        redirect_to question_path(@user_vote), notice: 'Vote add'
+      if votable_type == "Question"
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_question", partial: 'votes/votes_question', locals: {question: @question })}
+      elsif votable_type == "Answer"
+        set_answer
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_answer_#{@answer.id}", partial: 'votes/votes_answers', locals: {question: @question, answer: @answer, vote: @vote })}
       end
     end
   end
 
   def destroy
+    votable_type = @votable.class.name
     @votable.votes.where(user_id: current_user.id).destroy_all
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_question", partial: 'votes/votes', locals: {question: @question })}
+      if votable_type == 'Question'
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_question", partial: 'votes/votes_question', locals: {question: @question })}
+      elsif votable_type == 'Answer'
+        set_answer
+        @vote_to_destroy = @votable.votes.find_by(user_id: current_user.id)
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_answer_#{@answer.id}", partial: 'votes/votes_answers', locals: {question: @question, answer: @answer, vote: @vote_to_destroy })}
+      else
+      end
     end
   end
 
   private
-    def user_vote
-      @user_vote = Vote.find_by(user_id: current_user.id)
-    end
 
     def set_question
       @question = Question.find(params[:question_id])
+    end
+
+    def set_answer
+      @answer = Answer.find(params[:answer_id])
     end
 
     def set_votable
