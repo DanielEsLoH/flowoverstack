@@ -9,7 +9,7 @@ class VotesController < ApplicationController
         format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_question", partial: 'votes/votes_question', locals: {question: @question })}
       elsif votable_type == "Answer"
         set_answer
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_answer_#{@answer.id}", partial: 'votes/votes_answers', locals: {question: @question, answer: @answer, vote: @vote })}
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_answer_#{@answer.id}", partial: 'votes/votes_answers', locals: {question: @question, answer: @answer})}
       end
     end
   end
@@ -22,8 +22,7 @@ class VotesController < ApplicationController
         format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_question", partial: 'votes/votes_question', locals: {question: @question })}
       elsif votable_type == 'Answer'
         set_answer
-        @vote_to_destroy = @votable.votes.find_by(user_id: current_user.id)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_answer_#{@answer.id}", partial: 'votes/votes_answers', locals: {question: @question, answer: @answer, vote: @vote_to_destroy })}
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("votes_answer_#{@answer.id}", partial: 'votes/votes_answers', locals: {question: @question, answer: @answer})}
       else
       end
     end

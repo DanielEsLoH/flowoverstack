@@ -1,6 +1,6 @@
 <% @answers.each do |answer| %>
   <div class="flex p-4">
-    <%= render partial:  'votes/votes_answers', locals: { answer: answer, question: @question, vote: @vote_id} %>
+    <%= render partial:  'votes/votes_answers', locals: { answer: answer, question: @question} %>
     <div class="w-full">
       <% if answer.present? %>
         <div id="<%= answer.id %>">

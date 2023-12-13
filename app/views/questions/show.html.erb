@@ -1,4 +1,4 @@
 <section class="mt-6 mx-52">
   <%= render 'question' %>
-  <%= render partial: 'answers/answers_all' %>
+  <%= render partial: 'answers/answers_all', locals: {answers: @answers} %>
 </section>

@@ -13,7 +13,6 @@ class QuestionsController < ApplicationController
     @comments = @question.comments.order(created_at: :desc)
     @answers = @question.answers.includes(:comments, :votes)
     @answer_id = params[:answer_id]
-    @vote_id = params[:id]
     @answer = @question.answers.new
   end
 
