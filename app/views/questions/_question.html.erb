@@ -9,7 +9,7 @@
     </div>
     <div class="flex-col">
       <%= render partial: 'comments/comments_question', locals: { comments: @comments, votable: @question, question: @question} %>
-      <%= render partial: 'comments/comment_form', locals: { commentable: @question } %>
+      <%= render partial: 'comments/comment_form', locals: { commentable: @question, id_form: @question.id } %>
     </div>
   </div>
 </div>

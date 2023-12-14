@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @comments = @question.comments.order(created_at: :desc)
+    @comments = @question.comments.order(created_at: :asc)
     @answers = @question.answers.includes(:comments, :votes)
     @answer_id = params[:answer_id]
     @answer = @question.answers.new

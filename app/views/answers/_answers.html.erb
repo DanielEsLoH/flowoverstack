@@ -12,7 +12,12 @@
       
       <%= render partial: 'comments/comments_answers', locals: { answer: answer, comments: answer.comments, votable: @answer, question: @question } %>
       <% if user_signed_in? %>
-        <%= form_with(model: [ answer.question, answer, answer.comments.new ], local: true) do |f| %>
+        <div data-controller="reset">
+          <%= form_with(model: [ answer.question, answer, answer.comments.new ], 
+            local: true,
+            id: "commentable_#{answer.id}_answer",
+            data: { action: 'submit->reset#commentForm' }) do |f| 
+          %>
           <div class="field flex flex-col border-spacing-4">
             <%= f.text_field :content, placeholder: 'Agrega un comentario', class: 'text-sm p-2 rounded-lg border-slate-300 border-2' %>
           </div>
@@ -21,7 +26,8 @@
               <%= f.submit 'Comentar', class: 'cursor-pointer' %>
             </div>
           </div>
-        <% end %>
+          <% end %>
+        </div>  
       <% end %>
     </div>
   </div>
