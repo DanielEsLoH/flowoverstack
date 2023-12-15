@@ -1,13 +1,19 @@
-<% if user_signed_in? %>
-  <h2 class="text-xl justify-center font-semibold p-4">Tu Respuesta</h2>
-  <%= form_with(model: @answer, url: question_answers_path(@question), method: :post) do |f| %>
-    <div class="field">
-      <%= f.text_area :content, placeholder: 'Agrega una respuesta', class: 'text-sm p-2 rounded-lg border-slate-300 border-2 h-24 w-full'%>
-    </div>
-    <div class="actions flex justify-end my-2">
+<div data-controller="reset">
+  <% if user_signed_in? %>
+    <h2 class="text-xl justify-center font-semibold p-4">Tu Respuesta</h2>
+    <%= form_with(model: answer, url: question_answers_path(question),
+      local: true,
+      html: { id: "form_answers" },
+      data: { action: "submit->reset#answerForm" }) do |f| 
+    %>
+      <div class="field">
+        <%= f.text_area :content, placeholder: 'Agrega una respuesta', class: 'text-sm p-2 rounded-lg border-slate-300 border-2 h-24 w-full'%>
+      </div>
+      <div class="actions flex justify-end my-2">
         <div class="p-2 bg-green-500 rounded-lg text-sm text-white font-semibold cursor-pointer">
           <%= f.submit "Enviar Respuesta", class: 'cursor-pointer' %>
         </div>
-    </div>    
+      </div>    
+    <% end %>
   <% end %>
-<% end %>
+</div>
