@@ -1,0 +1,4 @@
+<%= turbo_frame_tag 'modal' %>
+<%= render 'shared/modal', title: 'Nueva pregunta' do %>
+  <%= render 'form', { url: questions_path } %>
+<% end %>

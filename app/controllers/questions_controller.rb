@@ -25,6 +25,8 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       if @question.save
         format.turbo_stream { render turbo_stream: turbo_stream.replace('questions_all', partial: 'questions/questions', locals: {questions: Question.all}) }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', partial: 'errors/new_question') }
       end
     end
   end
