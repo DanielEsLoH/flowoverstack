@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/ddollar/foreman.git
+  revision: a5f9b78fa5cf657733c8a4cfd01b2c0c151b4fce
+  specs:
+    foreman (0.87.2)
+
+GIT
   remote: https://github.com/heartcombo/devise.git
   revision: e2242a95f3bb2e68ec0e9a064238ff7af6429545
   branch: main
@@ -276,6 +282,7 @@ DEPENDENCIES
   devise!
   factory_bot_rails
   font-awesome-sass (~> 6.4)
+  foreman!
   hirb (~> 0.7.3)
   importmap-rails
   jbuilder

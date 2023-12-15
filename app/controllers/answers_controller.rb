@@ -12,7 +12,7 @@ class AnswersController < ApplicationController
       end
     else
       flash[:error] = "Error al crear la respuesta"
-      redirect_to question_path(@answer)
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("answers_all", partial: 'answers/answers_all', locals: {answers: @answers}) }
     end
   end
 
