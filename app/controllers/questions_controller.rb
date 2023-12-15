@@ -2,13 +2,17 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show]
   before_action :authenticate_user!, only: [:new, :create]
   def index
-    @questions = Question.all
+    if params[:search]
+      @questions = Question.where('title LIKE ?', "%#{params[:search]}%")
+    else
+      @questions = Question.all.order(created_at: :desc)
+    end
   end
-   
-  def show
-    @comments = @question.comments.order(created_at: :desc)
-    @answers = @question.answers.includes(:comments, :votes)
 
+  def show
+    @comments = @question.comments.order(created_at: :asc)
+    @answers = @question.answers.includes(:comments, :votes)
+    @answer_id = params[:answer_id]
     @answer = @question.answers.new
   end
 
@@ -21,6 +25,8 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       if @question.save
         format.turbo_stream { render turbo_stream: turbo_stream.replace('questions_all', partial: 'questions/questions', locals: {questions: Question.all}) }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', partial: 'errors/new_question') }
       end
     end
   end

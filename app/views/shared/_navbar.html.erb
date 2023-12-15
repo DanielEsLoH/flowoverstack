@@ -1,23 +1,30 @@
 <header>
-  <nav class="flex justify-between bg-slate-800 text-white p-4">
-    <ul>
-      <%= link_to root_path, class: "felx gap-3" do %>
-        Flowoverstack
-      <% end %>
-    </ul>
-    
-    <ul class="flex gap-3">
-      <% if current_user %>
+  <nav class="bg-slate-800 text-white p-4">
+    <div class="flex justify-between mx-16">
+      <ul>
+        <%= link_to root_path, class: "felx gap-3" do %>
+          Flowoverstack
+        <% end %>
+      </ul>
+      
+      <ul class="flex gap-3 justify-center items-center">
         <li class="flex">
-          <p class="mr-4"><%= current_user.email %></p>
-          <p><%= link_to "Salir", destroy_user_session_path, data: { turbo_method: :delete } %></p>
+          <%= form_with(url: questions_path, method: :get, local: true) do %>
+            <%= text_field_tag :search, params[:search], class: 'text-sm text-slate-500 h-8', placeholder: 'Buscar...' %>
+          <% end %>
         </li>
-      <% else %>
-        <li class="flex">
-          <p class="mr-4"><%= link_to "Iniciar sesión", new_user_session_path %></p>
-          <p><%= link_to "Registrate", new_user_registration_path %></p>
-        </li>
-      <% end %>
-    </ul>
+        <% if current_user %>
+          <li class="flex">
+            <p class="mr-4"><%= current_user.email %></p>
+            <p><%= link_to "Salir", destroy_user_session_path, data: { turbo_method: :delete } %></p>
+          </li>
+        <% else %>
+          <li class="flex">
+            <p class="mr-4"><%= link_to "Iniciar sesión", new_user_session_path %></p>
+            <p><%= link_to "Registrate", new_user_registration_path %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
 </header>

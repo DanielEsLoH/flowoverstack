@@ -1,7 +1,8 @@
-<div class="my-4 py-2 border-b-2 border-slate-300">
+<%= turbo_frame_tag 'modal' %>
+<div class="my-4 py-2 border-b-2 border-slate-300" id="comments_<%= dom_id answer %>">
   <div>
     <h2 class="text-center font-semibold text-xl pb-4">Comentarios:</h2>
-    <% comments.reverse.each do |comment| %>
+    <% comments.each do |comment| %>
       <p class="border-t-2 py-2 border-slate-200 text-sm">
         <%= comment.content %>
       </p>  

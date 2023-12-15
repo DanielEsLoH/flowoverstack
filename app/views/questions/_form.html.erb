@@ -1,4 +1,8 @@
 <%= form_with(model: @question, url: url, data: { controller: "reset", action: "submit->reset#resetForm"}) do |f| %>
+  <div>
+    <%= render 'shared/errors', obj: @question %>
+  </div>
+
   <div class="flex flex-col py-4">
     <%= f.label :title, "Titulo", class: 'text-white font-semibold' %>
     <%= f.text_field :title, class: 'p-2 rounded-lg text-sm font-semibold w-full' %>
