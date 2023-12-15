@@ -17,10 +17,8 @@
     <%= render 'shared/navbar' %>
     <main>
       <div>
-        <!-- 
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p> -->
         <%= render partial: 'shared/notifications', locals: { message: flash[:notice]} %>
+        <%= render partial: 'shared/notifications', locals: { message: flash[:alert] } %>
         <%= turbo_frame_tag 'modal' %>
         <%= yield %>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
