@@ -1,4 +1,5 @@
 <%= turbo_frame_tag 'modal' %>
 <%= render 'shared/modal', title: 'Nueva pregunta' do %>
+  <%= render partial: 'shared/notifications', locals: { message: flash[:alert] } %>
   <%= render 'form', { url: questions_path } %>
 <% end %>
