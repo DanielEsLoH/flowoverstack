@@ -24,7 +24,6 @@ class CommentsController < ApplicationController
         flash.now[:alert] = "No se ha creado ningún comentario"
         format.turbo_stream {render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications', locals: {message: flash[:alert]})}
         format.html { redirect_to question_path(@question)}
-
       end
     end
   end
