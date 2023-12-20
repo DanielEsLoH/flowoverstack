@@ -10,8 +10,7 @@
 #  user_id     :bigint           not null
 #
 class Question < ApplicationRecord
-  validates :title, presence: true
-  validates :description, presence: true
+  validates_presence_of :title, :description
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :answers, dependent: :destroy

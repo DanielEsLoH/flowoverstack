@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "modal" %>
 <section id="questions_all">
-  <% questions.each do |question| %>
+  <% questions.reverse.each do |question| %>
     <div class="border-t-2 border-slate-300 flex items-center">
       <div class="flex-col ml-6 text-center">
         <p class="text-2xl font-semibold"><%= question.votes.count %></p>

@@ -7,15 +7,23 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-          if @comment.commentable_type == "Question"
-            format.turbo_stream { render turbo_stream: turbo_stream.replace('comments_question', partial: 'comments/comments_question',
-                                                                                locals: { comments: @commentable.comments })}
-          elsif @comment.commentable_type == "Answer"
-            format.turbo_stream { render turbo_stream: turbo_stream.replace("comments_answer_#{@answer.id}", partial: 'comments/comments_answers',
-                                                                                locals: { answer: @answer, comments: @commentable.comments })}
+          flash.now[:notice] = "Comentario creado"
+          commentable_type = @comment.commentable_type
+          if commentable_type == "Question"
+            format.turbo_stream do
+              render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications', locals: {message: flash[:notice]}) +
+                                  turbo_stream.replace('comments_question', partial: 'comments/comments_question', locals: { comments: @commentable.comments })
+          end
+          elsif commentable_type == "Answer"
+            format.turbo_stream do
+              render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications', locals: {message: flash[:notice]}) +
+                                  turbo_stream.replace("comments_answer_#{@answer.id}", partial: 'comments/comments_answers', locals: { answer: @answer, comments: @commentable.comments })
+            end
           end
       else
-        redirect_to question_path(@commentable), alert: 'Error: Comment could not be created.'
+        flash.now[:alert] = "No se ha creado ningún comentario"
+        format.turbo_stream {render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications', locals: {message: flash[:alert]})}
+        format.html { redirect_to question_path(@question)}
       end
     end
   end

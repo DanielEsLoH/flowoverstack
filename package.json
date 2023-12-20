@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "flowbite": "^2.2.1",
+    "stimulus-notification": "^2.2.0"
+  }
+}

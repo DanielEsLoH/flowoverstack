@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
     if params[:search]
       @questions = Question.where('title LIKE ?', "%#{params[:search]}%")
     else
-      @questions = Question.all.order(created_at: :desc)
+      @questions = Question.all
     end
   end
 
@@ -24,9 +24,17 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.new(question_params)
     respond_to do |format|
       if @question.save
-        format.turbo_stream { render turbo_stream: turbo_stream.replace('questions_all', partial: 'questions/questions', locals: {questions: Question.all}) }
+        format.turbo_stream do
+          flash.now[:notice] = "Pregunta creada correctamente"
+          render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications', locals: {message: flash[:notice]}) +
+                              turbo_stream.replace('questions_all', partial: 'questions/questions', locals: {questions: Question.all})
+        end
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', partial: 'errors/new_question') }
+        format.turbo_stream do
+          flash.now[:alert] = "No se ha podido crear la pregunta"
+          render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications', locals: {message: flash[:alert]}) +
+                              turbo_stream.replace('modal', partial: 'errors/new_question')
+        end
       end
     end
   end
