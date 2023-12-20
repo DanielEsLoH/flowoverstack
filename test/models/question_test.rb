@@ -9,10 +9,8 @@
 #  updated_at  :datetime         not null
 #  user_id     :bigint           not null
 #
-require "test_helper"
+require 'test_helper'
 
 class QuestionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
 end
