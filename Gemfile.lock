@@ -117,6 +117,11 @@ GEM
       reline (>= 0.3.8)
     diff-lcs (1.5.0)
     erubi (1.12.0)
+    factory_bot (6.4.2)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.2)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
     ffi (1.16.3)
     font-awesome-sass (6.5.1)
       sassc (~> 2.0)
@@ -282,10 +287,11 @@ PLATFORMS
 DEPENDENCIES
   annotate
   bootsnap
-  capybara
+  capybara (~> 3.39, >= 3.39.2)
   database_cleaner (~> 2.0, >= 2.0.2)
   debug
   devise!
+  factory_bot_rails (~> 6.4, >= 6.4.2)
   font-awesome-sass (~> 6.4)
   foreman!
   hirb (~> 0.7.3)

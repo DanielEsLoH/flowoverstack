@@ -69,10 +69,11 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
+  gem 'capybara', '~> 3.39', '>= 3.39.2'
   gem "selenium-webdriver"
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
   gem 'database_cleaner', '~> 2.0', '>= 2.0.2'
+  gem 'factory_bot_rails', '~> 6.4', '>= 6.4.2'
 end
 
 gem "tailwindcss-rails", "~> 2.0"
