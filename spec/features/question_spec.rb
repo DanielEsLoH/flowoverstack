@@ -23,5 +23,12 @@ RSpec.feature "Questions", type: :feature, js: true do
 
     expect(page).to have_content('Pregunta creada correctamente')
     expect(page).to have_content('Test title')
+
+    # Visita la página de la pregunta
+    visit question_path(Question.last)
+
+    # Verifica que el título y la descripción de la pregunta están presentes en la página
+    expect(page).to have_content('Test title')
+    expect(page).to have_content('Test description')
   end
 end
