@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
@@ -17,9 +19,10 @@ RSpec.describe CommentsController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Comment' do
-        expect {
-          post :create, params: { question_id: question.id, comment: { content: 'Test content' } }, format: :turbo_stream
-        }.to change(Comment, :count).by(1)
+        expect do
+          post :create, params: { question_id: question.id, comment: { content: 'Test content' } },
+                        format: :turbo_stream
+        end.to change(Comment, :count).by(1)
       end
 
       it 'renders the turbo stream' do
@@ -32,9 +35,9 @@ RSpec.describe CommentsController, type: :controller do
 
     context 'with invalid params' do
       it 'does not create a new Comment' do
-        expect {
+        expect do
           post :create, params: { question_id: question.id, comment: { content: nil } }, format: :turbo_stream
-        }.not_to change(Comment, :count)
+        end.not_to change(Comment, :count)
       end
     end
   end

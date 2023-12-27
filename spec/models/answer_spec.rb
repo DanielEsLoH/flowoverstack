@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Answer, type: :model do
@@ -18,7 +20,7 @@ RSpec.describe Answer, type: :model do
   end
 
   it 'has many votes' do
-    assc= described_class.reflect_on_association(:votes)
+    assc = described_class.reflect_on_association(:votes)
     expect(assc.macro).to eq :has_many
   end
 end

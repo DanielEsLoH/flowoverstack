@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: votes
@@ -11,6 +13,6 @@
 #
 class Vote < ApplicationRecord
   belongs_to :user
-  belongs_to :votable, polymorphic: true
-  validates_uniqueness_of :user_id, scope: [:votable_id, :votable_type]
+  belongs_to :votable, polymorphic: true, counter_cache: true
+  validates_uniqueness_of :user_id, scope: %i[votable_id votable_type]
 end

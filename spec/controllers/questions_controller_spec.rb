@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
@@ -42,13 +44,15 @@ RSpec.describe QuestionsController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Question' do
-        expect {
-          post :create, params: { question: { title: 'Test title', description: 'Test description' } }, format: :turbo_stream
-        }.to change(Question, :count).by(1)
+        expect do
+          post :create, params: { question: { title: 'Test title', description: 'Test description' } },
+                        format: :turbo_stream
+        end.to change(Question, :count).by(1)
       end
 
       it 'assigns a newly created question as @question' do
-        post :create, params: { question: { title: 'Test title', description: 'Test description' } }, format: :turbo_stream
+        post :create, params: { question: { title: 'Test title', description: 'Test description' } },
+                      format: :turbo_stream
         expect(assigns(:question)).to be_a(Question)
         expect(assigns(:question)).to be_persisted
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: questions
@@ -12,5 +14,4 @@
 require 'test_helper'
 
 class QuestionTest < ActiveSupport::TestCase
-
 end

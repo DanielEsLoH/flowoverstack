@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: questions
@@ -17,7 +19,8 @@ class Question < ApplicationRecord
   has_many :votes, as: :votable, dependent: :destroy
 
   def description_markdown
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, space_after_headers: true, fenced_code_blocks: true, lax_html_blocks: true)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, space_after_headers: true,
+                                                                fenced_code_blocks: true, lax_html_blocks: true)
     markdown.render(description).html_safe
   end
 end

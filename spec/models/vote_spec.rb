@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Vote, type: :model do
@@ -16,8 +18,8 @@ RSpec.describe Vote, type: :model do
   it 'validates uniqueness of user in the scope of votable_id and votable_type' do
     user = User.create!(email: 'test@example.com', password: 'password', password_confirmation: 'password')
     question = Question.create!(title: 'Some title test', description: 'Some description test', user: user)
-    votable = Answer.create!(content: 'Some content', question: question)
-    vote1 = Vote.create!(user: user, votable: votable)
+    votable = Answer.create!(content: 'Some content', question: question, user: user)
+    Vote.create!(user: user, votable: votable)
     vote2 = Vote.new(user: user, votable: votable)
     expect(vote2).not_to be_valid
   end
