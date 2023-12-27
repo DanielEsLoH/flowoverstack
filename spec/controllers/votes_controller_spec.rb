@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable all
 
 require 'rails_helper'
 
@@ -9,7 +10,7 @@ RSpec.describe VotesController, type: :controller do
   # Crea un usuario, una pregunta y una respuesta para las pruebas
   let(:user) { User.create!(email: 'test@example.com', password: 'password', password_confirmation: 'password') }
   let(:question) { Question.create!(title: 'Test title', description: 'Test description', user: user) }
-  let(:answer) { Answer.create!(content: 'Some content for the Test', question: question) }
+  let(:answer) { Answer.create!(content: 'Some content for the Test', question: question, user: user) }
 
   # Inicia sesión antes de cada prueba
   before do
