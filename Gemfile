@@ -78,6 +78,7 @@ group :test do
   gem 'factory_bot_rails', '~> 6.4', '>= 6.4.2'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
 end
 
 gem 'tailwindcss-rails', '~> 2.0'

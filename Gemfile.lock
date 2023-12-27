@@ -122,6 +122,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.5.0)
+    docile (1.4.0)
     e2mmap (0.1.0)
     erubi (1.12.0)
     factory_bot (6.4.2)
@@ -281,6 +282,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     solargraph (0.50.0)
       backport (~> 1.2)
       benchmark
@@ -361,6 +368,7 @@ DEPENDENCIES
   redcarpet (~> 3.6)
   rspec-rails (~> 6.1)
   selenium-webdriver
+  simplecov
   solargraph (~> 0.50.0)
   sprockets-rails
   stimulus-rails
