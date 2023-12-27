@@ -2,15 +2,15 @@
   <% if current_user && !current_user.votes.exists?(votable: answer) %>
     <%= button_to question_answer_votes_path(question, answer) do %>
       <i class="fa-regular fa-circle-up text-3xl"></i>
-      <p class="text-center"> <%= answer.votes.count %></p>
+      <p class="text-center"> <%= answer.votes_count %></p>
     <% end %>
   <% elsif current_user && vote_by_user(answer) %>
     <%= button_to question_answer_vote_path(question, answer, vote_by_user(answer)), method: :delete do %>
       <i class="fa-solid fa-circle-up text-3xl"></i>
-      <p class="text-center"><%= answer.votes.count %></p>
+      <p class="text-center"><%= answer.votes_count %></p>
     <% end %>
   <% else %>
     <i class="fa-regular fa-circle-up text-3xl"></i>
-    <p class="text-center"><%= answer.votes.count %></p>
+    <p class="text-center"><%= answer.votes_count %></p>
   <% end %>
 </div>

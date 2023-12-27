@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
@@ -17,9 +19,9 @@ RSpec.describe AnswersController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Answer' do
-        expect {
+        expect do
           post :create, params: { question_id: question.id, answer: { content: 'Test content' } }, format: :turbo_stream
-        }.to change(Answer, :count).by(1)
+        end.to change(Answer, :count).by(1)
       end
 
       it 'renders the turbo stream' do
@@ -32,9 +34,9 @@ RSpec.describe AnswersController, type: :controller do
 
     context 'with invalid params' do
       it 'does not create a new Answer' do
-        expect {
+        expect do
           post :create, params: { question_id: question.id, answer: { content: nil } }, format: :turbo_stream
-        }.not_to change(Answer, :count)
+        end.not_to change(Answer, :count)
       end
     end
   end

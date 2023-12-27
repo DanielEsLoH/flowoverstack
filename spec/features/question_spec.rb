@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "Questions", type: :feature, js: true do
+RSpec.feature 'Questions', type: :feature, js: true do
   let(:user) { User.create!(email: 'test@example.com', password: 'password') }
 
   before do
@@ -13,9 +15,9 @@ RSpec.feature "Questions", type: :feature, js: true do
 
   scenario 'User creates a new question' do
     visit questions_path
-    click_link 'Hacer una pregunta'  # Abre el modal
+    click_link 'Hacer una pregunta' # Abre el modal
 
-    within '#modal' do  # Asegúrate de reemplazar 'new_question_frame' con el ID correcto de tu Turbo Frame
+    within '#modal' do # Asegúrate de reemplazar 'new_question_frame' con el ID correcto de tu Turbo Frame
       fill_in 'Titulo', with: 'Test title'
       fill_in 'Descripción', with: 'Test description'
       click_button 'Crear pregunta'

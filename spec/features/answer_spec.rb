@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "Answers", type: :feature, js: true do
+RSpec.feature 'Answers', type: :feature, js: true do
   let(:user) { User.create!(email: 'test@example.com', password: 'password') }
   let(:question) { Question.create!(title: 'Test title', description: 'Test description', user: user) }
 
@@ -23,5 +25,4 @@ RSpec.feature "Answers", type: :feature, js: true do
     expect(page).to have_content('¡Respuesta recibida!')
     expect(page).to have_content('Some answer for test')
   end
-
 end
