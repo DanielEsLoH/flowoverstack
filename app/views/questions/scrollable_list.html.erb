@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "questions-page-#{@pagy.page}" do %>
+  <%= render 'questions', questions: @questions %>
+  <%= render partial: "next_page" %>
+<% end %>

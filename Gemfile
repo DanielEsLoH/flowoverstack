@@ -91,3 +91,7 @@ gem 'hirb', '~> 0.7.3'
 
 gem 'foreman', github: 'ddollar/foreman'
 gem 'redcarpet', '~> 3.6'
+
+gem "faker", "~> 3.2"
+
+gem "pagy", "~> 6.2"

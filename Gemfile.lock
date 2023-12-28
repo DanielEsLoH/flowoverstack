@@ -130,6 +130,8 @@ GEM
     factory_bot_rails (6.4.2)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
+    faker (3.2.2)
+      i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     font-awesome-sass (6.5.1)
       sassc (~> 2.0)
@@ -183,6 +185,7 @@ GEM
     nokogiri (1.15.5-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (6.2.0)
     parallel (1.24.0)
     parser (3.2.2.4)
       ast (~> 2.4.1)
@@ -356,11 +359,13 @@ DEPENDENCIES
   debug
   devise!
   factory_bot_rails (~> 6.4, >= 6.4.2)
+  faker (~> 3.2)
   font-awesome-sass (~> 6.4)
   foreman!
   hirb (~> 0.7.3)
   importmap-rails
   jbuilder
+  pagy (~> 6.2)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8)

@@ -5,11 +5,13 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show]
   before_action :authenticate_user!, only: %i[new create]
   def index
-    @questions = if params[:search]
-                   Question.where('title LIKE ?', "%#{params[:search]}%")
-                 else
-                   Question.includes(:user)
-                 end
+    if params[:search]
+      @pagy, @questions = pagy_countless(Question.where('title LIKE ?', "%#{params[:search]}%").order(created_at: :desc))
+    else
+      @pagy, @questions = pagy_countless(Question.includes(:user).order(created_at: :desc))
+    end
+
+    render "scrollable_list" if params[:page]
   end
 
   def show
@@ -32,7 +34,7 @@ class QuestionsController < ApplicationController
           render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications',
                                                                      locals: { message: flash[:notice] }) +
                                turbo_stream.replace('questions_all', partial: 'questions/questions',
-                                                                     locals: { questions: Question.all })
+                                                                     locals: { questions: Question.all.order(created_at: :desc) })
         end
       else
         format.turbo_stream do
