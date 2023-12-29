@@ -16,7 +16,8 @@ class QuestionsController < ApplicationController
 
 
   def show
-    @comments = @question.comments.order(created_at: :asc)
+    @pagy, @comments = pagy_countless(@question.comments.order(created_at: :asc), items: 5)
+    render "comments/scrollable_list" if params[:page]
     @answers = @question.answers.includes(:comments)
     @answer_id = params[:answer_id]
     @answer = @question.answers.new

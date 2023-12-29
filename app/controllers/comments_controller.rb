@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       if @comment.save
         flash.now[:notice] = 'Comentario creado'
         commentable_type = @comment.commentable_type
-        comments = @commentable.comments.order(created_at: :desc)
+        @pagy, comments = pagy_countless(@commentable.comments.order(created_at: :desc), items: 5)
         if commentable_type == 'Question'
           format.turbo_stream do
             render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications',

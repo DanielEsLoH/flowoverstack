@@ -19,12 +19,6 @@
     height: 100px;
 }
 
-.comments {
-    max-height: 300px; /* Ajusta este valor a la altura máxima que desees */
-    overflow-y: auto; /* Esto habilita el desplazamiento vertical cuando el contenido supera la altura máxima */
-  }
-
-  .comments h2 {
-    position: sticky;
-    top: 0; /* Esto mantendrá el encabezado en la parte superior de la ventana de visualización cuando te desplaces */
-  }
+.max-height {
+    max-height: 12rem;
+}
