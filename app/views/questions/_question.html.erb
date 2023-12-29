@@ -8,7 +8,7 @@
       <p><%= @question.description_markdown.html_safe %></p>
     </div>
     <div class="flex-col">
-      <%= render partial: 'comments/comments_question', locals: { comments: @comments, votable: @question, question: @question} %>
+      <%= render partial: 'comments/comments_questions/comments_question', locals: { comments: @comments, votable: @question, question: @question} %>
       <%= render partial: 'comments/comment_form', locals: { commentable: @question, id_form: @question.id } %>
     </div>
   </div>

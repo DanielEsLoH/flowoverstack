@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "comments-page-#{@pagy.page}" do %>
+  <%= render partial: 'comments/comments_questions/comments', locals: { comments: @comments, votable: @question, question: @question} %>
+  <%= turbo_frame_tag "comments-page-#{@pagy.page}" do %>
+    <%= render partial: 'comments/comments_questions/next_page' %>
+  <% end %>
+<% end %>

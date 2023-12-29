@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
           format.turbo_stream do
             render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications',
                                                                        locals: { message: flash[:notice] }) +
-                                 turbo_stream.replace('comments_question', partial: 'comments/comments_question',
+                                 turbo_stream.replace('comments_question', partial: 'comments/comments_questions/comments_question',
                                                                            locals: { comments: comments })
           end
         elsif commentable_type == 'Answer'
