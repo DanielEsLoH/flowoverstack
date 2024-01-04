@@ -1,34 +1,36 @@
-<% @answers.each do |answer| %>
-  <div class="flex p-4">
-    <%= render partial:  'votes/votes_answers', locals: { answer: answer, question: @question} %>
-    <div class="w-full">
-      <% if answer.present? %>
-        <div id="<%= answer.id %>">
-          <p><%= answer.content %></p>
-        </div>
-      <% else %>
-        <p>Si conoces alguien que pueda responder esta pregunta por favor tímbrale y dile que lo necesitamos con urgencia.</p>
-      <% end %>
-      
-      <%= render partial: 'comments/comments_answers', locals: { answer: answer, comments: answer.comments, votable: @answer, question: @question } %>
-      <% if user_signed_in? %>
-        <div data-controller="reset">
-          <%= form_with(model: [ answer.question, answer, answer.comments.new ], 
-            local: true,
-            id: "commentable_#{answer.id}_answer",
-            data: { action: 'submit->reset#commentForm' }) do |f| 
-          %>
-          <div class="field flex flex-col border-spacing-4">
-            <%= f.text_field :content, placeholder: 'Agrega un comentario', class: 'text-sm p-2 rounded-lg border-slate-300 border-2' %>
+<div class="divide-y-2 divide-slate-300">
+  <% @answers.each do |answer| %>
+    <div class="flex p-4">
+      <%= render partial:  'votes/votes_answers', locals: { answer: answer, question: @question} %>
+      <div class="w-full">
+        <% if answer.present? %>
+          <div id="<%= answer.id %>">
+            <p><%= answer.content %></p>
           </div>
-          <div class="actions flex justify-end my-2">
-            <div class="p-2 bg-green-500 rounded-lg text-sm text-white font-semibold cursor-pointer">
-              <%= f.submit 'Comentar', class: 'cursor-pointer' %>
+        <% else %>
+          <p>Si conoces alguien que pueda responder esta pregunta por favor tímbrale y dile que lo necesitamos con urgencia.</p>
+        <% end %>
+        
+        <%= render partial: 'comments/comments_answers', locals: { answer: answer, comments: answer.comments, votable: @answer, question: @question } %>
+        <% if user_signed_in? %>
+          <div data-controller="reset">
+            <%= form_with(model: [ answer.question, answer, answer.comments.new ], 
+              local: true,
+              id: "commentable_#{answer.id}_answer",
+              data: { action: 'submit->reset#commentForm' }) do |f| 
+            %>
+            <div class="field flex flex-col border-spacing-4">
+              <%= f.text_field :content, placeholder: 'Agrega un comentario', class: 'text-sm p-2 rounded-lg border-slate-300 border-2' %>
             </div>
-          </div>
-          <% end %>
-        </div>  
-      <% end %>
+            <div class="actions flex justify-end my-2">
+              <div class="p-2 bg-green-500 rounded-lg text-sm text-white font-semibold cursor-pointer">
+                <%= f.submit 'Comentar', class: 'cursor-pointer' %>
+              </div>
+            </div>
+            <% end %>
+          </div>  
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

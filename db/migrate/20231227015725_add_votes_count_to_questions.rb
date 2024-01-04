@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddVotesCountToQuestions < ActiveRecord::Migration[7.0]
   def change
     add_column :questions, :votes_count, :integer, default: 0

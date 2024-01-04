@@ -4,7 +4,8 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.build(answer_params)
-    @answers = @question.answers
+    @pagy, @answers = pagy(@question.answers.order(created_at: :asc).includes(:comments), items: 10)
+
     @answer.user = current_user  # Asigna el usuario actual a la respuesta
 
     respond_to do |format|
