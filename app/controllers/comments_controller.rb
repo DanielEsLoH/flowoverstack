@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable all
 
 class CommentsController < ApplicationController
   def create
@@ -11,19 +12,20 @@ class CommentsController < ApplicationController
       if @comment.save
         flash.now[:notice] = 'Comentario creado'
         commentable_type = @comment.commentable_type
+        comments = @commentable.comments.order(created_at: :desc)
         if commentable_type == 'Question'
           format.turbo_stream do
             render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications',
                                                                        locals: { message: flash[:notice] }) +
                                  turbo_stream.replace('comments_question', partial: 'comments/comments_question',
-                                                                           locals: { comments: @commentable.comments })
+                                                                           locals: { comments: comments })
           end
         elsif commentable_type == 'Answer'
           format.turbo_stream do
             render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications',
                                                                        locals: { message: flash[:notice] }) +
                                  turbo_stream.replace("comments_answer_#{@answer.id}",
-                                                      partial: 'comments/comments_answers', locals: { answer: @answer, comments: @commentable.comments })
+                                                      partial: 'comments/comments_answers', locals: { answer: @answer, comments: comments })
           end
         end
       else

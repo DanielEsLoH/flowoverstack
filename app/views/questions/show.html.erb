@@ -1,5 +1,7 @@
 <section class="mt-6 mx-52">
   <%= render 'question' %>
-  <%= render partial: 'answers/answers_all', locals: {answers: @answers} %>
+  <div class="border-t-2 border-slate-300">
+    <%= render partial: 'answers/answers_all', locals: {answers: @answers} %>
+  </div>
   <%= render partial: 'answers/form', locals: { answer: @answer, question: @question } %>
 </section>

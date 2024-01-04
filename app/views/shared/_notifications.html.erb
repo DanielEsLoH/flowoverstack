@@ -3,7 +3,7 @@
     <% if flash[:notice] %>
       <div 
         id="toast-success" 
-        class="transition transform duration-1000 fixed top-5 left-1/2 -translate-x-1/2 mx-auto flex items-center w-full max-w-xs p-4 mb-4 text-white bg-gray-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" 
+        class="transition transform duration-1000 fixed top-5 left-1/2 -translate-x-1/2 mx-auto flex items-center w-full max-w-xs p-4 mb-4 text-white bg-gray-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 notification" 
         role="alert"
         data-controller="notifications"
         data-notification-delay-value="2000"
@@ -29,7 +29,7 @@
     <% elsif flash[:alert] %>
       <div 
         id="toast-danger" 
-        class="transition transform duration-1000 fixed top-5 left-1/2 -translate-x-1/2 flex items-center w-full max-w-xs p-4 mb-4 text-white bg-gray-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" 
+        class="transition transform duration-1000 fixed top-5 left-1/2 -translate-x-1/2 flex items-center w-full max-w-xs p-4 mb-4 text-white bg-gray-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 notification" 
         role="alert"
         data-controller="notifications"
         data-notification-delay-value="2000"

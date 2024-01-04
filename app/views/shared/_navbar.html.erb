@@ -8,22 +8,27 @@
       </ul>
       
       <ul class="flex gap-3 justify-center items-center">
-        <li class="flex">
-          <%= form_with(url: questions_path, method: :get, local: true) do %>
-            <%= text_field_tag :search, params[:search], class: 'text-sm text-slate-500 h-8', placeholder: 'Buscar...' %>
-          <% end %>
-        </li>
         <% if current_user %>
           <li class="flex">
             <p class="mr-4"><%= current_user.email %></p>
-            <p><%= link_to "Salir", destroy_user_session_path, data: { turbo_method: :delete } %></p>
+            <p class="mr-4"><%= link_to "Salir", destroy_user_session_path, data: { turbo_method: :delete } %></p>
           </li>
         <% else %>
           <li class="flex">
             <p class="mr-4"><%= link_to "Iniciar sesión", new_user_session_path %></p>
-            <p><%= link_to "Registrate", new_user_registration_path %></p>
+            <p class="mr-4"><%= link_to "Registrate", new_user_registration_path %></p>
           </li>
         <% end %>
+        <li class="flex">
+          <%= form_with(url: questions_path, method: :get, local: true) do %>
+            <div class="relative text-gray-600">
+              <%= text_field_tag :search, params[:search], class: 'text-sm text-slate-500 h-8 rounded pl-10', placeholder: "Buscar..." %>
+              <span class="absolute left-0 top-0 h-8 w-8 flex items-center justify-center pl-2">
+                <i class="fas fa-search text-slate-500"></i>
+              </span>
+            </div>
+          <% end %>
+        </li>
       </ul>
     </div>
   </nav>
