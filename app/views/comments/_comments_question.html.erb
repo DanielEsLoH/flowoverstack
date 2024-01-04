@@ -1,7 +1,12 @@
-<%= turbo_frame_tag 'modal' %>
 <div class="my-4 border border-slate-300 rounded-lg overflow-y-scroll h-auto max-height" id="comments_question">
   <div class="bg-sky-100 flex justify-center items-center sticky top-0">
     <h2 class="text-center font-semibold text-xl p-2">Comentarios:</h2>
   </div>
-  <%= render partial: 'comments/comments_questions/comments', locals: {comments: comments} %>
+  <div>
+    <% comments.each do |comment| %>
+      <p class="border-t-2 py-2 border-slate-200 text-sm items-center">
+        <%= comment.content %>
+      </p>  
+    <% end %>
+  </div>
 </div>

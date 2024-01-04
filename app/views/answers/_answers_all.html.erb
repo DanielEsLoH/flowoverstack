@@ -1,9 +1,6 @@
 <div id="answers_all">
   <div class="py-6">
     <h2 class="text-xl justify-center font-semibold p-4"> <%= @question.answers_count %> Respuesta(s)</h2>
-      <%= render partial: 'answers/answers' %>
-      <%= turbo_frame_tag "answers-page-#{@pagy.page}" do %>
-        <%= render partial: "answers/next_page" %>
-      <% end %>
+    <%= render partial: 'answers/answers' %>
   </div>
 </div>

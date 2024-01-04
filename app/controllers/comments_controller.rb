@@ -12,12 +12,12 @@ class CommentsController < ApplicationController
       if @comment.save
         flash.now[:notice] = 'Comentario creado'
         commentable_type = @comment.commentable_type
-        @pagy, comments = pagy_countless(@commentable.comments.order(created_at: :desc), items: 5)
+        comments = @commentable.comments.order(created_at: :desc)
         if commentable_type == 'Question'
           format.turbo_stream do
             render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications',
                                                                        locals: { message: flash[:notice] }) +
-                                 turbo_stream.replace('comments_question', partial: 'comments/comments_questions/comments_question',
+                                 turbo_stream.replace('comments_question', partial: 'comments/comments_question',
                                                                            locals: { comments: comments })
           end
         elsif commentable_type == 'Answer'
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
             render turbo_stream: turbo_stream.append('flash-messages', partial: 'shared/notifications',
                                                                        locals: { message: flash[:notice] }) +
                                  turbo_stream.replace("comments_answer_#{@answer.id}",
-                                                      partial: 'comments/comments_answers', locals: { answer: @answer, comments: @commentable.comments })
+                                                      partial: 'comments/comments_answers', locals: { answer: @answer, comments: comments })
           end
         end
       else

@@ -11,7 +11,7 @@
           <p>Si conoces alguien que pueda responder esta pregunta por favor tímbrale y dile que lo necesitamos con urgencia.</p>
         <% end %>
         
-        <%= render partial: 'comments/comments_answers', locals: { answer: answer, comments: answer.comments, votable: @answer, question: @question } %>
+        <%= render partial: 'comments/comments_answers', locals: { answer: answer, comments: comments(answer), votable: @answer, question: @question } %>
         <% if user_signed_in? %>
           <div data-controller="reset">
             <%= form_with(model: [ answer.question, answer, answer.comments.new ], 
